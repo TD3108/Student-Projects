@@ -1,0 +1,6 @@
+{
+  "name": "Indian Kitchen Recipe Rescaler",
+  "description": "An artisanal kitchen menu card tool to easily scale 15-minute Indian home recipes for any number of guests.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

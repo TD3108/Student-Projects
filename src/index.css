@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+.font-menu-title {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-menu-serif {
+  font-family: 'Cormorant Garamond', Garamond, serif;
+}
+
+.font-sans-clean {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Subtle parchment and menu card paper grain effect */
+.bg-parchment {
+  background-color: #faf6ee;
+  background-image: 
+    radial-gradient(#eedec9 0.75px, transparent 0.75px),
+    radial-gradient(#f0e6d6 0.75px, #faf6ee 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Vintage menu border styling */
+.menu-double-border {
+  border: 1px solid #c9b49b;
+  outline: 1px solid #c9b49b;
+  outline-offset: -6px;
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  header, footer, nav, #house-favorites, #culinary-guide {
+    display: none !important;
+  }
+  .bg-parchment {
+    background: #fff !important;
+    border: 2px solid #222 !important;
+    box-shadow: none !important;
+  }
+  .menu-double-border {
+    outline: 1px solid #222 !important;
+    border: 1px solid #222 !important;
+  }
+  button {
+    display: none !important;
+  }
+}
+

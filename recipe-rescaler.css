@@ -1,0 +1,64 @@
+/* 
+  The Indian Kitchen Recipe Rescaler
+  Artisanal Menu Card Stylesheet 
+*/
+
+:root {
+  --bg-dark: #1e1712;
+  --bg-parchment: #faf6ee;
+  --border-gold: #c9b49b;
+  --border-gold-accent: #b45309;
+  --text-primary: #1c130d;
+  --text-muted: #614e3b;
+  --color-accent: #f59e0b;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: #140f0c;
+  color: #f2e7d8;
+}
+
+.font-menu-title {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-menu-serif {
+  font-family: 'Cormorant Garamond', Garamond, serif;
+}
+
+.bg-parchment {
+  background-color: var(--bg-parchment);
+  background-image: 
+    radial-gradient(#eedec9 0.75px, transparent 0.75px),
+    radial-gradient(#f0e6d6 0.75px, var(--bg-parchment) 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.menu-double-border {
+  border: 1px solid var(--border-gold);
+  outline: 1px solid var(--border-gold);
+  outline-offset: -6px;
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  header, footer, nav, button {
+    display: none !important;
+  }
+  .bg-parchment {
+    background: #fff !important;
+    border: 2px solid #222 !important;
+    box-shadow: none !important;
+  }
+  .menu-double-border {
+    outline: 1px solid #222 !important;
+    border: 1px solid #222 !important;
+  }
+}

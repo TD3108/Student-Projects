@@ -1,0 +1,46 @@
+{
+  "application": "Indian Kitchen Recipe Rescaler",
+  "version": "1.0.0",
+  "author": "Home Cook Edition",
+  "description": "An artisanal kitchen menu card tool to easily scale 15-minute Indian home recipes for any number of guests.",
+  "scalingFormula": "(originalAmount * servingsWanted) / recipeMakes",
+  "units": ["g", "kg", "cups", "tbsp", "tsp", "pieces", "pinches", "ml"],
+  "houseFavorites": [
+    {
+      "id": "paneer-bhurji",
+      "dishName": "Spiced Cottage Cheese Scramble (Paneer Bhurji)",
+      "prepTimeMinutes": 10,
+      "defaultServings": 2,
+      "category": "Quick Dinner",
+      "ingredients": [
+        { "name": "Fresh Crumbled Cottage Cheese (Paneer)", "amount": 250, "unit": "g" },
+        { "name": "Diced Red Onions & Tomatoes", "amount": 180, "unit": "g" },
+        { "name": "Clarified Butter (Ghee) or Cooking Oil", "amount": 2, "unit": "tbsp" }
+      ]
+    },
+    {
+      "id": "poha",
+      "dishName": "Spiced Flattened Rice with Peanuts (Poha)",
+      "prepTimeMinutes": 12,
+      "defaultServings": 3,
+      "category": "Breakfast & Brunch",
+      "ingredients": [
+        { "name": "Thick Flattened Rice (Poha, Rinsed)", "amount": 200, "unit": "g" },
+        { "name": "Crunchy Roasted Peanuts", "amount": 50, "unit": "g" },
+        { "name": "Diced Onions & Green Chilies", "amount": 120, "unit": "g" }
+      ]
+    },
+    {
+      "id": "jeera-aloo",
+      "dishName": "Crispy Pan-Seared Cumin Potatoes (Jeera Aloo)",
+      "prepTimeMinutes": 10,
+      "defaultServings": 4,
+      "category": "Everyday Side",
+      "ingredients": [
+        { "name": "Boiled & Cubed Potatoes", "amount": 400, "unit": "g" },
+        { "name": "Whole Toasted Cumin Seeds", "amount": 1.5, "unit": "tbsp" },
+        { "name": "Cooking Oil or Clarified Butter (Ghee)", "amount": 2.5, "unit": "tbsp" }
+      ]
+    }
+  ]
+}

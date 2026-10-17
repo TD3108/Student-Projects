@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Indian Kitchen - 15-Minute Recipe Rescaler</title>
+  <meta name="description" content="An artisanal kitchen menu card tool to easily scale 15-minute Indian home recipes for any number of guests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./recipe-rescaler.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#140f0c] text-[#f2e7d8] antialiased">
+  <header class="border-b border-[#3b2d22] bg-[#1a140f]/90 sticky top-0 z-40 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="text-xl font-bold font-menu-title text-[#f3e7d3]">The Indian Kitchen</span>
+      <span class="text-xs uppercase tracking-wider text-[#b45309] font-semibold">· Home Cook Edition</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="window.print()" class="px-3 py-1.5 bg-[#f59e0b] hover:bg-[#fbbf24] text-[#140f0c] font-bold text-xs uppercase tracking-wider rounded shadow transition cursor-pointer">
+        Print Menu Card
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-10 space-y-12">
+    <div class="text-center space-y-2">
+      <div class="inline-block px-3 py-1 rounded-full bg-[#2a1d14] border border-[#54351d] text-xs font-semibold text-[#f59e0b]">
+        100% Indian Kitchen · Ready in Under 15 Minutes
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold font-menu-title text-[#fbf4eb]">
+        15-Minute Recipe Rescaler
+      </h1>
+      <p class="font-menu-serif text-lg text-[#baa592] italic">
+        Precision ingredient recalibration for rapid Indian home cooking. Adapt your core dishes in seconds.
+      </p>
+    </div>
+
+    <!-- Centerpiece Menu Card -->
+    <div class="bg-[#1e1712] p-4 sm:p-8 rounded-2xl shadow-2xl border border-[#3f2e20]">
+      <div class="bg-parchment menu-double-border text-[#2a2118] p-6 sm:p-10 rounded-xl">
+        <div class="text-center pb-6 border-b border-[#c9b49b] mb-6">
+          <div class="text-xs tracking-[0.25em] uppercase text-[#b45309] font-bold mb-1">
+            ✦ THE INDIAN HOME COOK'S MENU CARD ✦
+          </div>
+          <h2 class="font-menu-title text-3xl font-bold text-[#1c130d]">
+            Chef's Proportion Card
+          </h2>
+          <p class="font-menu-serif text-base text-[#614e3b] italic mt-1">
+            Enter your dish details, table covers, and three core ingredients.
+          </p>
+        </div>
+
+        <form id="rescaler-form" class="space-y-6">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-bold text-[#5c4733] mb-2">
+              1. Dish Name (Ready Under 15 Mins)
+            </label>
+            <input id="dish-name" type="text" class="w-full px-4 py-3 bg-[#fffcf6] border border-[#c4ae94] rounded-lg font-menu-title text-lg text-[#211812] outline-none" placeholder="e.g. Spiced Cottage Cheese Scramble (Paneer Bhurji)" value="Spiced Cottage Cheese Scramble (Paneer Bhurji)" />
+          </div>
+
+          <!-- Seamless Servings Calibration -->
+          <div class="border-y border-[#d8c7b3] py-5 my-2">
+            <div class="flex items-center justify-between mb-3">
+              <label class="text-xs uppercase tracking-wider font-bold text-[#5c4733]">
+                2. Table Servings & Guest Count
+              </label>
+              <span id="multiplier-badge" class="text-xs font-mono font-bold text-[#8a4409] bg-[#faebd7] px-2.5 py-0.5 rounded border border-[#cdae8a]">
+                Scale Multiplier: 2.00×
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-[#fffdf9] p-4 rounded-xl border border-[#cbba9e]">
+                <div class="text-xs font-bold uppercase tracking-wider text-[#634e3a] mb-2">
+                  Recipe Makes (Servings)
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="adjustServings('makes', -1)" class="w-10 h-10 rounded-lg bg-[#f0e4d0] hover:bg-[#e4d3ba] font-bold text-lg cursor-pointer">-</button>
+                  <input id="recipe-makes" type="number" step="any" min="0" value="2" class="flex-1 text-center py-2 bg-white border border-[#c2ab90] rounded-lg font-mono text-2xl font-bold text-[#291e15] outline-none" />
+                  <button type="button" onclick="adjustServings('makes', 1)" class="w-10 h-10 rounded-lg bg-[#f0e4d0] hover:bg-[#e4d3ba] font-bold text-lg cursor-pointer">+</button>
+                </div>
+              </div>
+
+              <div class="bg-[#fffdf9] p-4 rounded-xl border border-[#cbba9e]">
+                <div class="text-xs font-bold uppercase tracking-wider text-[#634e3a] mb-2">
+                  Servings Wanted (Guests)
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="adjustServings('wanted', -1)" class="w-10 h-10 rounded-lg bg-[#f0e4d0] hover:bg-[#e4d3ba] font-bold text-lg cursor-pointer">-</button>
+                  <input id="servings-wanted" type="number" step="any" min="0" value="4" class="flex-1 text-center py-2 bg-white border border-[#c2ab90] rounded-lg font-mono text-2xl font-bold text-[#291e15] outline-none" />
+                  <button type="button" onclick="adjustServings('wanted', 1)" class="w-10 h-10 rounded-lg bg-[#f0e4d0] hover:bg-[#e4d3ba] font-bold text-lg cursor-pointer">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-1.5 mt-3 pt-1">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-[#816c56] mr-1">Quick Presets:</span>
+              <button type="button" onclick="setPreset(0.5)" class="px-2.5 py-1 text-xs font-medium rounded bg-[#eee3cf] hover:bg-[#e0cfb4] border border-[#cbba9e] cursor-pointer">Half (0.5×)</button>
+              <button type="button" onclick="setPreset(1)" class="px-2.5 py-1 text-xs font-medium rounded bg-[#eee3cf] hover:bg-[#e0cfb4] border border-[#cbba9e] cursor-pointer">Exact (1×)</button>
+              <button type="button" onclick="setPreset(1.5)" class="px-2.5 py-1 text-xs font-medium rounded bg-[#eee3cf] hover:bg-[#e0cfb4] border border-[#cbba9e] cursor-pointer">1.5×</button>
+              <button type="button" onclick="setPreset(2)" class="px-2.5 py-1 text-xs font-medium rounded bg-[#eee3cf] hover:bg-[#e0cfb4] border border-[#cbba9e] cursor-pointer">Double (2×)</button>
+              <button type="button" onclick="setPreset(3)" class="px-2.5 py-1 text-xs font-medium rounded bg-[#eee3cf] hover:bg-[#e0cfb4] border border-[#cbba9e] cursor-pointer">Triple (3×)</button>
+            </div>
+          </div>
+
+          <!-- Ingredients -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-bold text-[#5c4733] mb-3">
+              3. The Three Ingredients & Original Quantities
+            </label>
+            <div class="space-y-3" id="ingredients-container">
+              <!-- Dynamically populated or rendered -->
+              <div class="bg-[#fffdf9] p-3.5 rounded-xl border border-[#cbba9e] flex flex-col sm:flex-row gap-3 items-center">
+                <span class="w-7 h-7 rounded-full bg-[#f0e4d0] border border-[#d2bfab] flex items-center justify-center font-mono text-xs font-bold text-[#674e37]">01</span>
+                <input id="ing-name-0" class="flex-1 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg text-sm" value="Fresh Crumbled Cottage Cheese (Paneer)" />
+                <input id="ing-amt-0" type="number" step="any" min="0" class="w-24 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg font-mono text-sm text-right font-bold" value="250" />
+                <input id="ing-unit-0" class="w-24 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg text-sm" value="g" />
+              </div>
+              <div class="bg-[#fffdf9] p-3.5 rounded-xl border border-[#cbba9e] flex flex-col sm:flex-row gap-3 items-center">
+                <span class="w-7 h-7 rounded-full bg-[#f0e4d0] border border-[#d2bfab] flex items-center justify-center font-mono text-xs font-bold text-[#674e37]">02</span>
+                <input id="ing-name-1" class="flex-1 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg text-sm" value="Diced Red Onions & Tomatoes" />
+                <input id="ing-amt-1" type="number" step="any" min="0" class="w-24 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg font-mono text-sm text-right font-bold" value="180" />
+                <input id="ing-unit-1" class="w-24 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg text-sm" value="g" />
+              </div>
+              <div class="bg-[#fffdf9] p-3.5 rounded-xl border border-[#cbba9e] flex flex-col sm:flex-row gap-3 items-center">
+                <span class="w-7 h-7 rounded-full bg-[#f0e4d0] border border-[#d2bfab] flex items-center justify-center font-mono text-xs font-bold text-[#674e37]">03</span>
+                <input id="ing-name-2" class="flex-1 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg text-sm" value="Clarified Butter (Ghee) or Cooking Oil" />
+                <input id="ing-amt-2" type="number" step="any" min="0" class="w-24 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg font-mono text-sm text-right font-bold" value="2" />
+                <input id="ing-unit-2" class="w-24 px-3 py-2 bg-white border border-[#c4ae94] rounded-lg text-sm" value="tbsp" />
+              </div>
+            </div>
+          </div>
+
+          <div id="error-message" class="hidden p-4 bg-[#fcf0ed] border-2 border-[#d95c43] rounded-xl text-[#872512] text-sm font-semibold"></div>
+
+          <button type="button" onclick="calculateScaling()" class="w-full py-4 bg-gradient-to-r from-[#b45309] via-[#92400e] to-[#78350f] hover:from-[#c25e10] text-white rounded-xl font-menu-title font-bold text-xl tracking-wide shadow-md cursor-pointer">
+            Calculate & Rescale the 3 Ingredients
+          </button>
+        </form>
+
+        <div id="results-section" class="mt-8 pt-6 border-t-2 border-dashed border-[#c4ae94]">
+          <div class="text-xs font-bold uppercase tracking-widest text-[#92400e] mb-1">
+            ✓ Proportions Scaled Successfully
+          </div>
+          <h3 id="result-dish-title" class="font-menu-title text-2xl font-bold text-[#1c130d]">
+            Spiced Cottage Cheese Scramble (Paneer Bhurji)
+          </h3>
+          <p id="result-summary" class="font-menu-serif text-sm text-[#66523e] italic mb-4">
+            Scaled for 4 people (from 2 servings · Multiplier: 2.00×)
+          </p>
+
+          <div id="scaled-cards" class="grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'home_cook_standalone_recipe_v1';
+
+    function saveState() {
+      const data = {
+        dishName: document.getElementById('dish-name').value,
+        recipeMakes: document.getElementById('recipe-makes').value,
+        servingsWanted: document.getElementById('servings-wanted').value,
+        ingredients: [
+          { name: document.getElementById('ing-name-0').value, amount: document.getElementById('ing-amt-0').value, unit: document.getElementById('ing-unit-0').value },
+          { name: document.getElementById('ing-name-1').value, amount: document.getElementById('ing-amt-1').value, unit: document.getElementById('ing-unit-1').value },
+          { name: document.getElementById('ing-name-2').value, amount: document.getElementById('ing-amt-2').value, unit: document.getElementById('ing-unit-2').value }
+        ]
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const data = JSON.parse(saved);
+          if (data.dishName) document.getElementById('dish-name').value = data.dishName;
+          if (data.recipeMakes) document.getElementById('recipe-makes').value = data.recipeMakes;
+          if (data.servingsWanted) document.getElementById('servings-wanted').value = data.servingsWanted;
+          if (data.ingredients) {
+            data.ingredients.forEach((ing, i) => {
+              if (document.getElementById(`ing-name-${i}`)) document.getElementById(`ing-name-${i}`).value = ing.name;
+              if (document.getElementById(`ing-amt-${i}`)) document.getElementById(`ing-amt-${i}`).value = ing.amount;
+              if (document.getElementById(`ing-unit-${i}`)) document.getElementById(`ing-unit-${i}`).value = ing.unit;
+            });
+          }
+        }
+      } catch (e) {}
+    }
+
+    function adjustServings(type, delta) {
+      const el = document.getElementById(type === 'makes' ? 'recipe-makes' : 'servings-wanted');
+      const val = Math.max(0, (parseFloat(el.value) || 0) + delta);
+      el.value = val;
+      updateMultiplier();
+      calculateScaling();
+    }
+
+    function setPreset(factor) {
+      const makes = parseFloat(document.getElementById('recipe-makes').value) || 0;
+      if (makes > 0) {
+        document.getElementById('servings-wanted').value = (Math.round(makes * factor * 10) / 10);
+        updateMultiplier();
+        calculateScaling();
+      }
+    }
+
+    function updateMultiplier() {
+      const makes = parseFloat(document.getElementById('recipe-makes').value) || 0;
+      const wanted = parseFloat(document.getElementById('servings-wanted').value) || 0;
+      const badge = document.getElementById('multiplier-badge');
+      if (makes > 0 && wanted > 0) {
+        badge.textContent = `Scale Multiplier: ${(wanted / makes).toFixed(2)}×`;
+      }
+    }
+
+    function calculateScaling() {
+      saveState();
+      updateMultiplier();
+
+      const makesStr = document.getElementById('recipe-makes').value.trim();
+      const wantedStr = document.getElementById('servings-wanted').value.trim();
+      const errBox = document.getElementById('error-message');
+      const resultsSec = document.getElementById('results-section');
+
+      const makes = Number(makesStr);
+      const wanted = Number(wantedStr);
+
+      if (!makesStr || isNaN(makes) || makes <= 0 || !wantedStr || isNaN(wanted) || wanted <= 0) {
+        errBox.textContent = "Please enter valid, positive numbers greater than zero for both Recipe Makes and Servings Wanted.";
+        errBox.classList.remove('hidden');
+        resultsSec.classList.add('hidden');
+        return;
+      }
+
+      errBox.classList.add('hidden');
+      resultsSec.classList.remove('hidden');
+
+      const dishTitle = document.getElementById('dish-name').value.trim() || 'Homestyle Indian Dish';
+      document.getElementById('result-dish-title').textContent = dishTitle;
+      document.getElementById('result-summary').textContent = `Scaled for ${wanted} people (from ${makes} servings · Multiplier: ${(wanted / makes).toFixed(2)}×)`;
+
+      const container = document.getElementById('scaled-cards');
+      container.innerHTML = '';
+
+      for (let i = 0; i < 3; i++) {
+        const name = document.getElementById(`ing-name-${i}`).value || `Ingredient ${i + 1}`;
+        const amt = parseFloat(document.getElementById(`ing-amt-${i}`).value) || 0;
+        const unit = document.getElementById(`ing-unit-${i}`).value || '';
+
+        // Formula: (original amount * servings wanted) / servings recipe makes
+        const newAmt = Math.round(((amt * wanted) / makes) * 100) / 100;
+
+        const card = document.createElement('div');
+        card.className = "bg-[#fffdfa] p-4 rounded-xl border border-[#cbbba6] shadow-sm";
+        card.innerHTML = `
+          <div class="text-[11px] font-mono font-bold uppercase text-[#7e6954] mb-1">Ingredient 0${i + 1}</div>
+          <h4 class="font-menu-title font-bold text-lg text-[#1f1711] mb-2">${name}</h4>
+          <div class="p-2.5 bg-[#fdf8ef] rounded-lg border border-[#e4d3bc] mb-2">
+            <div class="text-[10px] uppercase font-bold text-[#825e36]">New Scaled Amount</div>
+            <div class="text-2xl font-mono font-extrabold text-[#92400e]">${newAmt} <span class="text-sm text-[#4f3c2b]">${unit}</span></div>
+          </div>
+          <div class="text-[11px] text-[#715d4b] border-t border-[#ebdcc9] pt-2">
+            <div>Original: ${amt} ${unit}</div>
+            <div class="font-mono text-[10px] text-[#9c856f] mt-0.5">(${amt} × ${wanted}) ÷ ${makes} = ${newAmt}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    window.onload = function() {
+      loadState();
+      calculateScaling();
+    };
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => {
+        saveState();
+        updateMultiplier();
+      });
+    });
+  </script>
+</body>
+</html>
